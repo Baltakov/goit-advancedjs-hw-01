@@ -26,9 +26,14 @@ function onSubmit(event) {
     email: form.elements.email.value,
     message: form.elements.message.value,
   };
-  console.log(formData);
-  localStorage.removeItem(localStorageKey);
-  form.reset();
+
+  if (formData.email && formData.message) {
+    console.log(formData);
+    localStorage.removeItem(localStorageKey);
+    form.reset();
+  } else {
+    alert('Please fill in both fields before submitting.');
+  }
 }
 
 form.addEventListener('input', throttle(saveToLocalStorage, 500));
